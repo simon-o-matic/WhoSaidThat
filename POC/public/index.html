@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>      
+        <meta charset="utf-8">
+        <title>Mobile Voice Coding App</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes" />
+        <meta name="apple-touch-fullscreen" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        
+        <!-- style sheets -->
+        <link rel="stylesheet" href="transaction.css" />
+        
+        <!-- Header.js to Load Scripts -->
+        <script type="text/javascript" src="jquery-2.min.js"> </script>
+        <script type="text/javascript" src="who.js"> </script>
+        <script type="text/javascript" src="head.js"> </script>
+
+        
+        <script>
+
+            var txns;
+            var selectedTransactionRow;
+            var activeTransactionIndex = 0;                        
+
+            nextTransaction = function () {                
+                activeTransactionIndex = activeTransactionIndex == txns.length - 1 ? 0 : activeTransactionIndex + 1;                
+                setActiveTransactionIndex();
+            }
+
+            previousTransaction = function () {
+                activeTransactionIndex = activeTransactionIndex == 0 ? txns.length - 1 : activeTransactionIndex - 1;                
+                setActiveTransactionIndex();
+            }
+
+            setActiveTransactionIndex = function () {
+                setInactiveTransactionBackground();
+                selectedTransactionRow = txns[activeTransactionIndex];
+                setActiveTransactionBackground();
+            };
+
+            setInactiveTransactionBackground = function () {
+                $(selectedTransactionRow).css("background-color", "");
+            }
+
+            setActiveTransactionBackground = function () {
+                $(selectedTransactionRow).css("background-color", "#C0C0C0");
+            }
+
+
+            var coa;
+            var selectedCoaRow;
+            var activeCoaIndex = 0;
+
+            nextCoa = function () {
+                activeCoaIndex = activeCoaIndex == coa.length - 1 ? 0 : activeCoaIndex + 1;
+                setActiveCoaIndex();
+            }
+
+            previousCoa = function () {
+                activeCoaIndex = activeCoaIndex == 0 ? coa.length - 1 : activeCoaIndex - 1;
+                setActiveCoaIndex();
+            }
+
+            setActiveCoaIndex = function () {
+                setInactiveCoaBackground();
+                selectedCoaRow = coa[activeCoaIndex];
+                setActiveCoaBackground();
+            };
+
+            setInactiveCoaBackground = function () {
+                $(selectedCoaRow).css("background-color", "");
+            }
+
+            setActiveCoaBackground = function () {
+                $(selectedCoaRow).css("background-color", "#C0C0C0");
+            }
+
+
+            $(document).ready(function () {
+                txns = $(".txns li");
+                selectedTransactionRow = txns[0];
+                setActiveTransactionBackground();
+
+                coa = $(".coa li");
+                selectedCoaRow = coa[0];
+                setActiveCoaBackground();
+            });
+
+       
+
+
+            applyCode = function () {                
+                $($(selectedTransactionRow).find("input")).val(selectedCoaRow.innerText);
+            }
+
+    </script>
+
+        <!-- The fav icon -->
+        <link rel="shortcut icon" href="Images/favicon.ico">
+
+    </head>
+    
+    <body>
+       <div data-role="page" class="type-home">
+	<div data-role="content">
+		<p class="jqm-version"></p>
+
+		<div class="content-secondary">
+			<div id="jqm-homeheader">
+				<h1 id="jqm-logo"><img height=120 src="Images/Logo.gif" alt="MYOB" /></h1>
+			</div>
+            <section data-role="content">               
+                <section id="list-transactions" class="list listTransactions edgetoedge">
+                        <ul class="txns" data-role="listview" data-inset="false" data-filter="false" data-icon="false" id="TransactionsList">                       
+                                <li  data-icon="false" id="Li1">                                        
+                                        <div class="transactionDetails">a narration</div>
+                                        <div class="transactionCode">
+                                            <input id="Code1" type="text" class="COA" />
+                                        </div>                                       
+                                        <div class="transactionAmount">31.00</div>
+                                        <div class="transactionDate">21/12/13</div>                                      
+                                </li>
+                                <li data-icon="false" id="Li2">
+                                        <div class="transactionDetails">b narration</div>
+                                        <div class="transactionCode">
+                                            <input id="Text1" type="text" class="COA" />
+                                        </div>                                       
+                                        <div class="transactionAmount">12.00</div>
+                                        <div class="transactionDate">21//13</div>                                      
+                                </li>
+                                <li data-icon="false" id="Li3">
+                                        <div class="transactionDetails">c narration</div>
+                                        <div class="transactionCode">
+                                            <input id="Text2" type="text" class="COA" />
+                                        </div>                                       
+                                        <div class="transactionAmount">45.00</div>
+                                        <div class="transactionDate">21/09/13</div>                                      
+                                </li>  
+                            <li data-icon="false" id="Li4">
+                                        <div class="transactionDetails">c narration</div>
+                                        <div class="transactionCode">
+                                            <input id="Text3" type="text" class="COA" />
+                                        </div>                                       
+                                        <div class="transactionAmount">45.00</div>
+                                        <div class="transactionDate">21/09/13</div>                                      
+                                </li>  
+                            <li data-icon="false" id="Li5">
+                                        <div class="transactionDetails">d narration</div>
+                                        <div class="transactionCode">
+                                            <input id="Text4" type="text" class="COA" />
+                                        </div>                                       
+                                        <div class="transactionAmount">45.00</div>
+                                        <div class="transactionDate">21/09/13</div>                                      
+                                </li>  
+                            <li data-icon="false" id="Li6">
+                                        <div class="transactionDetails">e narration</div>
+                                        <div class="transactionCode">
+                                            <input id="Text5" type="text" class="COA" />
+                                        </div>                                       
+                                        <div class="transactionAmount">45.00</div>
+                                        <div class="transactionDate">21/09/13</div>                                      
+                                </li>  
+                            <li data-icon="false" id="Li7">
+                                        <div class="transactionDetails">f narration</div>
+                                        <div class="transactionCode">
+                                            <input id="Text6" type="text" class="COA" />
+                                        </div>                                       
+                                        <div class="transactionAmount">45.00</div>
+                                        <div class="transactionDate">21/09/13</div>                                      
+                                </li>    
+                            <li data-icon="false" id="Li8">
+                                        <div class="transactionDetails">g narration</div>
+                                        <div class="transactionCode">
+                                            <input id="Text7" type="text" class="COA" />
+                                        </div>                                       
+                                        <div class="transactionAmount">45.00</div>
+                                        <div class="transactionDate">21/09/13</div>                                      
+                                </li>     
+                            <li data-icon="false" id="Li9">
+                                        <div class="transactionDetails">h narration</div>
+                                        <div class="transactionCode">
+                                            <input id="Text8" type="text" class="COA" />
+                                        </div>                                       
+                                        <div class="transactionAmount">45.00</div>
+                                        <div class="transactionDate">21/09/13</div>                                      
+                                </li>                        
+                        </ul>
+                </section>
+                <section id="list-coa" class="list coa edgetoedge">
+                    <ul class="coa" data-role="listview" data-inset="false" data-filter="false" data-icon="false" id="CoaList">                       
+                        <li  data-icon="false" id="Coa1">expenses</li>                                                        
+                        <li  data-icon="false" id="Coa2">income</li>
+                        <li  data-icon="false" id="Coa3">cash</li>
+                        <li  data-icon="false" id="Coa4">holiday</li>
+                        <li  data-icon="false" id="Coa5">wages</li>
+                        <li  data-icon="false" id="Coa6">car</li>
+                        <li  data-icon="false" id="Coa7">travel</li> 
+                        <li  data-icon="false" id="Li10">utilities</li>                        
+                    </ul>
+                </section> 
+                
+
+                
+        </section>
+
+
+		</div><!--/content-primary-->
+        
+        <input id="ButtonNext" type="submit" value="Next Transaction" onclick="nextTransaction();" />
+        <input id="ButtonPrevious" type="submit" value="Previous Transaction" onclick="previousTransaction();" />
+        <input id="ButtonNextCoa" type="submit" value="Next Coa" onclick="nextCoa();" />
+        <input id="ButtonPreviousCoa" type="submit" value="Previous Coa" onclick="previousCoa();" />
+        <input id="ButtonSetCode" type="submit" value="Apply Code" onclick="applyCode();" />
+        &nbsp;</div>
+           <div data-role="footer" data-id="foo1" data-position="fixed">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="Default.html" class="ui-btn-active ui-state-persist">Home</a></li>                        
+                    </ul>
+                </div><!-- /navbar -->
+            </div><!-- /footer -->
+        </div>
+        
+        <!-- ADD ALL SCRIPTS IN referenceScripts.js with head.js -->
+        <script src="Scripts/MobileReferenceScripts.js"> </script>
+    </body>
+</html>

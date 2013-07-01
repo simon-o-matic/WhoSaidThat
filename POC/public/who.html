@@ -1,161 +1,32 @@
 <html>
 <head>
 	<title> WHO SAID THAT! </title>
-	<script src="jquery.2.min.js"></script>
-
-	<style>
-		.line {
-			width: 60%;
-			background-color: red;
-		}
-
-		.highlight {
-			background-color: blue;
-		}
-	</style>
+	<script src="jquery-2.min.js"></script>
+	<script src="who.js"></script>
+	<link rel="stylesheet" href="who.css" />
+	<script>
+		$(document).ready(function() {
+			var items = [
+				"bunnings", "telstra", "optus", "wendy's", "ebay.com"
+			];
+			for (var i = 0; i < 20; i++) {
+				$(".txns").append("<tr class='line'><td>" +
+					randomDate().toDateString() + "</td><td>" + 
+					items[Math.floor(Math.random()*items.length)]+ "</td><td class='code'> &nbsp" + 
+					"</td></tr>");
+			}
+			init();
+		});		
+		function randomDate() {
+			var start = new Date();
+			start.setMonth(new Date().getMonth() - 1);
+			var end = new Date();
+    		return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+		}	
+	</script>
 </head>
 <body>
 
-	<div class="line" id="boo">won</div>
-	<div class="line">two</div>
-	<div class="line">three</div>
-	<div class="line">four</div>
-	<div class="line">five</div>
-	<div class="line">6ix</div>
-	<div class="line">se7en</div>
-	<div class="line">8</div>
-	<div class="line">9</div>
-
-	<!-- ---------------- -->
-
-	<script>
-		var recognition = new webkitSpeechRecognition();
-		listen();
-		
-		var accounts = [
-			"expenses",
-			"income",
-			"cash",
-			"holiday",
-			"wages",
-			"car",
-			"travel",
-			"utilities"
-		];
-
-		var li = 0;
-
-//		chrome.tts.speak('Hello, Bank Link');
-
-		function listen() {
-			//say the coding
-			setLine(0);
-			recognition.continuous = true;
-			recognition.interimResults = true;	
-			recognition.start();
-			recognition.onresult = iHeardSomething;
-		}
-
-
-		function finished() {
-			recognition.stop();
-			// say the 
-		}
-
-		
-		function iHeardSomething(event) {
-			for (var i = event.resultIndex; i < event.results.length; ++i) {
-				var state = false;
-        		if (event.results[i].isFinal) {
-        			state = true;
-        		}
-        		var final = (state == true)? "Final": "Interim";
-        		console.log("Sentence (" + event.results[i][0].confidence + "): " + event.results[i][0].transcript + " >> " + final);
-        		processWord(event.results[i][0].transcript, state);
-            
-        	}
-    	}
-
-    	function prevLine() {
-    		unSetLine(li);
-    		li--;
-    		setLine(li);
-    	}
-
-    	function nextLine() {
-    		unSetLine(li);
-    		li++;
-    		setLine(li);
-    	}
-
-    	function setLine(lineNumber) {
-    		$($(".line")[lineNumber]).addClass("highlight");
-    	}
-    	function unSetLine(lineNumber) {
-    		$($(".line")[lineNumber]).removeClass("highlight");
-    	}
-    	
-    	var found = false;
-
-    	var nextsFound = 0;
-    	var backsFound = 0;
-
-    	var inCoding = false;
-
-    	function processWord(sentence, final) {
-    		var nextsInSentence = 0;
-    		var backsInSentence = 0;
-
-    		var words = sentence.split(" ");
-    		var word;
-    		
-    		for (word in words) {
-	    		word = words[word].trim().toLowerCase();
-	    		console.log("WORD: >"  + word + "<");
-
-	    		if (inCoding) {
-	    			matchCode(word);
-	    			inCoding = false;
-	    		} else if (word === "next") {
-	    			nextsInSentence++;
-	    		} else if (word === "back") {
-					backsInSentence++
-	    		} else if (word === "code") {
-	    			inCoding = true;
-	    		} 
-	    	}
-
-	    	if (nextsInSentence > nextsFound) {
-	    		for (var i = 0; i < nextsInSentence - nextsFound ; i++) {
-	    			nextLine();
-	    		}
-	    		nextsFound = nextsInSentence;
-	    	}
-
-			if (backsInSentence > backsFound) {
-	    		for (var i = 0; i < backsInSentence - backsFound ; i++) {
-	    			prevLine();
-	    		}
-	    		backsFound = backsInSentence;
-	    	}
-
-	    	if (final == true) {
-	    		backsInSentence = 0;
-	    		backsFound = 0;
-	    		nextsInSentence = 0;
-	    		nextsFound = 0;
-	    	}
-    	}
-
-    	function matchCode(code) {
-    		if (accounts.indexOf(code) > -1) {
-    			$("#boo").text(code);	
-    		} else {
-    			$("#boo").text("WTF???");	
-    		}
-    		//console.log("code? " + accounts.indexOf(code));
-    	}
-
-	</script>
+<table class="txns"/>
 </body>
 </html>

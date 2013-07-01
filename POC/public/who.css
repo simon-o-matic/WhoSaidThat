@@ -1,0 +1,20 @@
+.txns {
+	border: 1px;
+	border-radius: 3px;
+	background-color: lightblue;
+	padding: 2px;
+}
+
+.line {
+	width: 60%;
+	background-color: lightgrey;
+}
+
+.highlight {
+	border-width: 4px;
+	background-color: slategrey;
+}
+
+.code {
+	width: 160px;
+}
