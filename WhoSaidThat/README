@@ -1,0 +1,7 @@
+Run a web server with
+
+	>ruby rserver.rb
+
+Then launch Chrome and navigate to
+
+	localhost:4567/who.html
