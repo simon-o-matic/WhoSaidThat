@@ -18,3 +18,9 @@
 .code {
 	width: 160px;
 }
+
+.instructions {
+	font-size: 8pt;
+	position: absolute;
+	bottom: 10px;
+}

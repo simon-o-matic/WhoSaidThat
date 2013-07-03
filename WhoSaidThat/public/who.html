@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title> WHO SAID THAT! </title>
+	<title> Voice coding of transactions </title>
 	<script src="jquery-2.min.js"></script>
 	<script src="who.js"></script>
 	<link rel="stylesheet" href="who.css" />
@@ -10,9 +10,10 @@
 				"bunnings", "telstra", "optus", "wendy's", "ebay.com"
 			];
 			for (var i = 0; i < 20; i++) {
-				$(".txns").append("<tr class='line'><td>" +
-					randomDate().toDateString() + "</td><td>" + 
-					items[Math.floor(Math.random()*items.length)]+ "</td><td class='code'> &nbsp" + 
+				$(".txns").append("<tr class='line'><td width=190>" +
+					randomDate().toDateString() + "</td><td width=150 align=middle>" + 
+					"$" + (Math.random()*500).toFixed(2) + "</td><td>" + 
+					items[Math.floor(Math.random()*items.length)]+ "</td><td class='code' align=right> &nbsp" + 
 					"</td></tr>");
 			}
 			init();
@@ -27,6 +28,13 @@
 </head>
 <body>
 
-<table class="txns"/>
+<h1>Please code these transactions</h1>
+
+<table class="txns">
+	<tr ><th align=middle colspan=4 bgcolor="CadetBlue">Bank Feed Transactions</th></tr>
+	<tr><th>Date</th><th>Amount</th><th>Details</th><th>Account</th></tr>
+</table>
+<div class="accounts"/>
+<div class="instructions">Use 'next', 'back', or 'code' and an account name.</div>
 </body>
 </html>

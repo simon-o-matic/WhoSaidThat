@@ -124,10 +124,10 @@ function processWord(sentence, final) {
 function matchCode(code) {
     for (account in accounts) {
         if (accounts[account].indexOf(code) > -1) {
-            $(".code", $(".txns tr")[li]).text(accounts[account][0]);
+            $(".code", $(".txns .line")[li]).text(accounts[account][0]);
             return true;
         } else {
-            $(".code", $(".txns tr")[li]).text("?");
+            $(".code", $(".txns .line")[li]).text("?");
         }
         console.log("code? " + accounts.indexOf(code));
     }
